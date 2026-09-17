@@ -1,0 +1,10 @@
+Create a Python program for a synthetic food delivery dataset using NumPy and Pandas.
+
+Requirements:
+1. Generate at least 200 rows.
+2. Include at least 5 numeric columns and one categorical column named cuisine_type.
+3. Use Seaborn to create a pairplot containing all numeric columns, colored by cuisine_type.
+4. Calculate the Pearson correlation matrix for the numeric columns.
+5. Create an annotated Seaborn correlation heatmap using a diverging color palette.
+6. Save the heatmap as a separate PNG file at DPI 200.
+7. Keep the code simple and suitable for a beginner Data Analytics assessment.

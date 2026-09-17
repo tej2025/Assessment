@@ -1,0 +1,72 @@
+M10-A1 Data Analytics Assessment
+
+Section A — Concept Application
+
+Q1. NumPy Vectorisation and Broadcasting
+
+NumPy vectorisation is technically superior because it performs operations on the entire array at once instead of processing 50,000 values one by one using a Python loop. This generally makes the calculation faster and more efficient and avoids the overhead of repeatedly executing Python-level loop operations.
+
+Broadcasting allows a single scalar value, such as ₹5 per km, to be automatically applied to every element of the NumPy array. For example, if distance contains all order distances, 5 * distance calculates the ₹5/km component for every order simultaneously.
+
+A Python loop may still be necessary when each iteration requires complex individual logic that cannot be easily expressed using NumPy vectorised operations, such as processing each order with different conditional or external operations.
+
+Q2. Pandas GroupBy and Aggregation
+
+The groupby() and agg() approach is suitable because the DataFrame contains many orders from different restaurants, and we need summary values for each restaurant. It groups all records belonging to the same restaurant and calculates multiple statistics efficiently. A manual for loop would require more code and separate handling for each restaurant.
+
+A suitable method chain is:
+
+df.groupby('restaurant_name').agg({'order_value':'mean', 'delivery_time_mins':'mean', 'rating':'mean'})
+
+This produces one row for each restaurant, with the average order value, average delivery time, and average rating. The resulting DataFrame uses restaurant_name as its index because it is the column used for grouping.
+
+
+Q3. Matplotlib Chart Selection
+
+For the monthly performance report:
+
+1. Total orders per month:
+A line chart is appropriate because it shows how the number of orders changes over the months and makes trends easy to observe.
+
+2. Proportion of orders by cuisine:
+A bar chart is appropriate because it allows easy comparison of the number or proportion of orders among Fast Food, Indian, Chinese, and Desserts.
+
+3. Distribution of delivery times:
+A histogram is appropriate because it shows how delivery times are distributed across different time intervals.
+
+`plt.subplots()` allows multiple charts to be arranged in a single figure. For example, the three required analyses can be displayed as three subplots in one figure.
+
+A shared x-axis is generally not appropriate for all three charts because they represent different types of data. The monthly orders and cuisine comparison have different x-axis categories, while the delivery-time histogram uses numerical time intervals.
+
+Q4. Identifying and Annotating the Maximum Spike
+
+First, find the maximum order volume in the 90-day data and identify the day on which it occurs.
+
+`plt.annotate()` can then be used to add a text label to the peak and draw an arrow pointing toward it.
+
+Two useful parameters are:
+
+- `xy`: specifies the position of the point being annotated, such as the peak day and its order volume.
+- `xytext`: specifies where the annotation text should be placed.
+
+These parameters allow the label to be positioned near the maximum spike while the arrow points directly to the peak.
+
+Q5. Boxplot vs Violin Plot
+
+A boxplot summarizes the distribution of ratings using the median, quartiles, and possible outliers. It is useful for comparing the rating distributions of Fast Food, Fine Dining, and Casual categories.
+
+A violin plot shows the distribution shape in more detail. It combines information similar to a boxplot with a density representation, so it can show where ratings are more concentrated.
+
+For this dataset, I would use a boxplot because the ratings are discrete values from 1 to 5, and the main purpose is to compare the three categories and identify possible outliers. It also provides a clear view of the median and spread.
+
+A violin plot would be preferable when the dataset contains continuous data and understanding the detailed shape or density of the distribution is more important.
+
+Q6. Correlation Heatmap and Multicollinearity
+
+A Seaborn correlation heatmap is useful for identifying relationships between the numeric columns. Each cell represents the Pearson correlation coefficient between two variables, and the color scale shows the strength and direction of the relationship.
+
+A value close to +1 indicates a strong positive correlation, while a value close to -1 indicates a strong negative correlation. A value close to 0 indicates little or no linear correlation.
+
+A correlation with an absolute value around 0.8 or higher can be considered a potential sign of multicollinearity. This threshold is commonly used as a practical rule of thumb because highly correlated predictors may provide similar information to a model.
+
+The heatmap makes these highly correlated pairs easy to identify visually.
